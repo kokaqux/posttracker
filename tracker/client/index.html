@@ -1,0 +1,141 @@
+<head>
+	<meta charset="utf-8">
+	<title>GreenRoomNow project 2</title>
+	<link rel="stylesheet" type="text/css" href="/home/hafiz/Dropbox/greenroomnow/posttracker/tracker/client/index.css">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+</head>
+
+<body>
+	<div id="wrapper">
+		<div>
+		{{> navbar}}
+		</div>
+
+		<div>
+		{{> listItem}}
+		</div>
+
+		<div>
+			{{> addItem}}
+		</div>
+		<div>
+			
+		</div>
+
+	</div>
+</body>
+
+
+
+<template name="navbar">
+	<nav class="navbar navbar-default navbar-fixed-top">
+		    <div class="container">
+		        <div class="row col-md-3 pull-right">
+		            <div class="btn login-button">
+		            {{> loginButtons}}
+		            </div> 
+		        </div>  
+		    </div>
+		</nav>
+</template>
+
+
+<template name="addItem">
+	<div class="container">
+		<form id="form-horizontal" class="myForm">
+			<div class="form-group">
+				<label class="control-label col-sm-1">Time</label>
+				<input  type="text" id="time" class="" placeholder="enter the time">
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-1">List URL</label>
+				<input type="url" id="listing_url"  placeholder="enter the url">
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-1">Facebook URL</label>
+				<input type="url" id="facebook_url" placeholder="enter the url">
+			</div>
+		</form>	
+		<hr>	
+			<div class="panel panel-default">
+				<div class="panel-footer"> 
+			        <button class="btn btn-danger btn-md">Clear</button>
+			        <button class="btn btn-success btn-md pull-right submit">Submit</button>
+		    	</div>	
+			</div>
+		
+	</div>
+</template>
+
+
+
+
+	<!-- <div class="container">
+		<div class="row col-xs-3">
+			<form class="form-horizontal" id="myForm" role="form">
+
+				<div class="form-group">
+					<label class="control-label col-sm-5">Time</label>
+					<input  type="text" id="time" placeholder="enter the time">
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-sm-5">List URL</label>
+					<input type="url" id="listing_url"  placeholder="enter the url">
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-sm-5">Facebook URL</label>
+					<input type="url" id="facebook_url" placeholder="enter the url">
+				</div>
+
+			</form>
+		</div>
+	<hr>	
+		<div class="container">
+			<div class="panel panel-default">
+				<div class="panel-footer"> 
+			        <button class="btn btn-danger btn-md">Clear</button>
+			        <button class="btn btn-success btn-md pull-right submit">Submit</button>
+		    	</div>	
+			</div>
+		</div>
+	</div>
+</template> -->
+
+
+<template name="listItem">
+	<div class="jumbotron">
+		<div class="container">
+            <table class="table">
+                <thead> 
+                    <tr>
+                    	<th>Created At</th>
+                    	<th>Time</th>
+                        <th>Username</th>
+                        <th>Listing URL</th>
+                        <th>Facebook URL</th>               
+                                
+                    </tr>
+                </thead>
+                <tbody>
+	                {{#each entry}}
+	                    <tr>
+						    <td>{{created_at}}</td>
+						    <td>{{time}}</td>
+						    <td>{{username}}</td>
+						    <td>{{listing_url}}</td>   
+						    <td>{{facebook_url}}</td>
+						    <td><button class="btn btn-danger delete">Delete</button></td>
+						</tr>
+	                {{/each}}
+		        </tbody>
+            </table>    
+		</div>	
+	</div>
+</template>
+
+
