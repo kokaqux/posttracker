@@ -15,8 +15,10 @@ Template.addItem.events({
       listing_url: $('#listing_url').val(),
       facebook_url: $('#facebook_url').val()
     }
-    	console.log('facebookpost:', facebookpost)
+    	console.log('facebookpost:', facebookpost);
     FacebookPost.insert(facebookpost);
+
+    $(".clear").val(' ')
   }
 })
 
@@ -32,15 +34,49 @@ Accounts.ui.config({
 	});
 
 Template.listItem.helpers({
-	entry:function() {
-	return FacebookPost.find().fetch();
-	}
-  	
+  entry :function() {
+
+    var selector={};
+    var options={
+      sort:{}
+    };
+
+    var sort_by_time = Session.get('sort_by_time');
+    var sort_by_listing = Session.get('sort_by_listing');
+
+    console.log('sort_by_time:', sort_by_time);
+    console.log('sort_by_listing:',sort_by_listing);
+
+    if (sort_by_time) {
+      options.sort[sort_by_time] = -1;
+    };
+
+    if (sort_by_listing) {
+    	options.sort[sort_by_listing] = 1;
+    };
+
+    console.log('Selector:',selector);
+    console.log('Options',options);
+
+    var facebookposts=FacebookPost.find(selector,options);
+      return facebookposts;
+  }
 })
+  	
 
 Template.listItem.events({
   'click .delete' : function() {
     FacebookPost.remove(this._id);
+  },
+  'click .sort_by_time': function() {
+    // tell the page to sort byname
+    Session.set('sort_by_time', 'created_at')
+    console.log('sortin by createdAt');
+  },
+  'click .sort_by_listing': function() {
+    // tell the page to sort byname
+    Session.set('sort_by_listing', 'listing_url')
+    console.log('sortin by listing');
   }
 })
 
@@ -52,3 +88,4 @@ Template.listItem.events({
 
 // sort posting time  in desending order
 // listing url with string and in ascending order
+
