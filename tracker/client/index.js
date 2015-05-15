@@ -41,25 +41,45 @@ Template.listItem.helpers({
       sort:{}
     };
 
-    var sort_by_time = Session.get('sort_by_time');
-    var sort_by_listing = Session.get('sort_by_listing');
+    // var sort_by_time = Session.get('sort_by_time');
 
-    console.log('sort_by_time:', sort_by_time);
-    console.log('sort_by_listing:',sort_by_listing);
+    // var sort_by_listing = Session.get('sort_by_listing');
 
-    if (sort_by_time) {
-      options.sort[sort_by_time] = -1;
-    };
+    // console.log('sort_by_time:', sort_by_time);
+    // console.log('sort_by_listing:',sort_by_listing);
 
-    if (sort_by_listing) {
-    	options.sort[sort_by_listing] = 1;
-    };
+        
+
+
+    // if (sort_by_time) {
+    //   options.sort[sort_by_time] = -1;
+    // };
+
+    // delete Session.keys['sort_by_time'];
+
+    // if (sort_by_listing) {
+    // 	options.sort[sort_by_listing] = 1;
+    // };
+
+    // delete Session.keys['sort_by_listing'];
+
+    var sort = Session.get('sort');
+
+    if(sort) {
+    	if(sort == 'created_at')
+    		options.sort[sort] = -1;
+
+    	if(sort == 'listing_url')
+    		options.sort[sort] = 1;
+    }
+
 
     console.log('Selector:',selector);
     console.log('Options',options);
 
     var facebookposts=FacebookPost.find(selector,options);
       return facebookposts;
+
   }
 })
   	
@@ -70,12 +90,14 @@ Template.listItem.events({
   },
   'click .sort_by_time': function() {
     // tell the page to sort byname
-    Session.set('sort_by_time', 'created_at')
+    // Session.set('sort_by_time', 'created_at')
+    Session.set('sort','created_at');
     console.log('sortin by createdAt');
   },
   'click .sort_by_listing': function() {
     // tell the page to sort byname
-    Session.set('sort_by_listing', 'listing_url')
+    // Session.set('sort_by_listing', 'listing_url')
+    Session.set('sort','listing_url');
     console.log('sortin by listing');
   }
 })
