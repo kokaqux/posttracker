@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <script>
+    $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
+    </script>
 </head>
 
 <body>
@@ -21,9 +26,7 @@
 		<div>
 			{{> addItem}}
 		</div>
-		<div>
-			
-		</div>
+		
 
 	</div>
 </body>
@@ -44,32 +47,44 @@
 </template>
 
 
+
 <template name="addItem">
-	<div class="container">
-		<form id="form-horizontal" class="myForm">
-			<div class="form-group">
-				<label class="control-label col-sm-1">Time</label>
-				<input  type="text" id="time" class="clear"  placeholder="enter the time">
-			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-1">List URL</label>
-				<input type="url" id="listing_url" class="clear"  placeholder="enter the url">
-			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-1">Facebook URL</label>
-				<input type="url" id="facebook_url" class="clear" placeholder="enter the url">
-			</div>
-		</form>	
-		<hr>	
-			<div class="panel panel-default">
-				<div class="panel-footer"> 
-			        <button class="btn btn-danger btn-md clear" id="clear">Clear</button>
-			        <button class="btn btn-success btn-md pull-right submit">Submit</button>
-		    	</div>	
-			</div>
-		
-	</div>
+  <form class="form-horizontal" role="form">
+
+	<div class="form-group form-group-sm">
+      <label class="col-sm-2 control-label" for="sm">Time</label>
+      <div class="col-sm-3">
+        <input class="form-control" type="text" id="datetimepicker" placeholder="Enter the time">
+      </div>
+    </div>    
+
+    <div class="form-group form-group-sm">
+      <label class="col-sm-2 control-label" for="sm">Listing URL</label>
+      <div class="col-sm-3">
+        <!-- <input class="form-control" type="url" data-error="that's an invalid URL" id="sm"> -->	
+        <input type="url" class="form-control" id="listing_url"  placeholder="Enter the listing URL" data-error="Bruh, that email url is invalid" required>
+      </div>
+    </div>
+
+    <div class="form-group form-group-sm">
+      <label class="col-sm-2 control-label" for="sm">Facebook URL</label>
+      <div class="col-sm-3">
+        <input class="form-control" Placeholder="enter the Facebook URL" type="text" id="facebook_url">
+      </div>
+    </div>
+<div class="container	">
+	<div class="panel-footer"> 
+        <button class="btn btn-danger btn-md">Clear</button>
+        <button class="btn btn-success btn-md pull-right submit">Submit</button>
+    </div>
+</div>
+
+
+  </form>
+
 </template>
+	
+
 
 
 

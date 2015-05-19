@@ -9,7 +9,7 @@ Template.addItem.events({
 	console.log('current date:',current_date);
     var facebookpost = {
       created_at: current_date,
-      time: $('#time').val(),
+      time: $('#datetimepicker').val(),
       username: Meteor.user().username,
       user_ids: Meteor.userId(), 
       listing_url: $('#listing_url').val(),
@@ -18,9 +18,14 @@ Template.addItem.events({
     	console.log('facebookpost:', facebookpost);
     FacebookPost.insert(facebookpost);
 
-    $(".clear").val(' ')
+    $(".clear").val(' ');
+    // $('#myForm').validator()
   }
 })
+
+
+
+  
 
 // function getDateString() {
 //     var date = Meteor.user().createdAt;
@@ -102,11 +107,13 @@ Template.listItem.events({
   }
 })
 
-// Template.listItem.helpers({
-// 	created_at: function() {
-// 		return current_date;
-// 	}
-// })
+Template.addItem.onRendered(function() {
+  $('#datetimepicker').datetimepicker();  
+});
+
+// Template.addItem.rendered = (function() {
+//   this.$('.datepicker').datepicker();
+// });
 
 // sort posting time  in desending order
 // listing url with string and in ascending order
