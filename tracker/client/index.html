@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+
     <script>
-    $(function () {
-                $('#datetimepicker1').datetimepicker();
-            });
-    </script>
+$(document).ready(function() {
+    $('#uriHtml5Form').formValidation();
+});
+</script>
 </head>
 
 <body>
@@ -37,8 +38,8 @@
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		    <div class="container">
 		    <a href="Localhost:3000" class="pull-left"><img src="logo.png"></a>
-		        <div class="row col-md-3 pull-right">
-		            <div class="btn btn-default btn-lg active">
+		        <div class="row col-md-3 pull-right clearfix">
+		            <div class="btn btn-default btn-lg  active">
 		            {{> loginButtons}}
 		            </div> 
 		        </div>  
@@ -49,12 +50,14 @@
 
 
 <template name="addItem">
-  <form class="form-horizontal" role="form">
+  <form class="form-horizontal" role="form" id="addItem">
 
 	<div class="form-group form-group-sm">
       <label class="col-sm-2 control-label" for="sm">Time</label>
       <div class="col-sm-3">
-        <input class="form-control" type="text" id="datetimepicker" placeholder="Enter the time">
+        <input class="form-control" 
+        type="text" id="datetimepicker" 
+        placeholder="Enter the time">
       </div>
     </div>    
 
@@ -62,14 +65,18 @@
       <label class="col-sm-2 control-label" for="sm">Listing URL</label>
       <div class="col-sm-3">
         <!-- <input class="form-control" type="url" data-error="that's an invalid URL" id="sm"> -->	
-        <input type="url" class="form-control" id="listing_url"  placeholder="Enter the listing URL" data-error="Bruh, that email url is invalid" required>
+  <input class="form-control" name="website"
+                type="url"
+                data-fv-uri-message="The website address is not valid" placeholder='Enter the listing URL' />
       </div>
     </div>
 
     <div class="form-group form-group-sm">
       <label class="col-sm-2 control-label" for="sm">Facebook URL</label>
       <div class="col-sm-3">
-        <input class="form-control" Placeholder="enter the Facebook URL" type="text" id="facebook_url">
+        <input class="form-control"
+         Placeholder="enter the Facebook URL"
+         type="text" id="facebook_url">
       </div>
     </div>
 <div class="container	">

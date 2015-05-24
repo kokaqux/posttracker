@@ -24,7 +24,6 @@ Template.addItem.events({
 })
 
 
-
   
 
 // function getDateString() {
@@ -108,7 +107,11 @@ Template.listItem.events({
 })
 
 Template.addItem.onRendered(function() {
-  $('#datetimepicker').datetimepicker();  
+  $('#datetimepicker').datetimepicker({
+       datepicker: false,
+       // format: 'H:i',
+       formatTime:'g:i A'  
+  })  
 });
 
 // Template.addItem.rendered = (function() {
