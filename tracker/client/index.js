@@ -5,7 +5,6 @@ Meteor.subscribe("facebookpost");
 Template.addItem.events({
   'click .submit': function() {
   	var current_date = moment().format("DD-MM-YYYY hh:mm");
-	// moment().format("DD-MM-YYYY");
 	console.log('current date:',current_date);
     var facebookpost = {
       created_at: current_date,
@@ -19,7 +18,13 @@ Template.addItem.events({
     FacebookPost.insert(facebookpost);
 
     $(".clear").val(' ');
-    // $('#myForm').validator()
+    // $form.parsley('validate');
+    // // Get the status of validity
+    // var isValid = $form.parsley('isValid');
+
+    // if (isValid) {
+    //     alert('done');
+    // }
   }
 })
 
@@ -80,7 +85,6 @@ Template.listItem.helpers({
 
     console.log('Selector:',selector);
     console.log('Options',options);
-
     var facebookposts=FacebookPost.find(selector,options);
       return facebookposts;
 
@@ -109,15 +113,26 @@ Template.listItem.events({
 Template.addItem.onRendered(function() {
   $('#datetimepicker').datetimepicker({
        datepicker: false,
-       // format: 'H:i',
+       format: 'H:i',
        formatTime:'g:i A'  
   })  
 });
 
-// Template.addItem.rendered = (function() {
-//   this.$('.datepicker').datepicker();
+// Template.addItem.rendered = function () {
+
+//   // Setup parsley form validation
+//   // replace form with the id of your form
+//   $('#form').parsley({trigger: 'change'});
+// }
+
+// Template.addItem.rendered(function(){
+//   $('#addItem').parsley({trigger: 'change'})
 // });
 
-// sort posting time  in desending order
-// listing url with string and in ascending order
+// Template.addItem.onRendered(function () {
+//   $('#addItem').parsley({trigger: 'change'});
+// });
 
+// Template.addItem.onRendered(function () {
+//   window.ParsleyValidator.setLocale(getLocale());
+// });

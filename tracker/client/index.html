@@ -1,86 +1,89 @@
 <head>
-	<meta charset="utf-8">
-	<title>GreenRoomNow project 2</title>
-	<link rel="stylesheet" type="text/css" href="/home/hafiz/Dropbox/greenroomnow/posttracker/tracker/client/index.css">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <title>GreenRoomNow project 2</title>
+  <link rel="stylesheet" type="text/css" href="/home/hafiz/Dropbox/greenroomnow/posttracker/tracker/client/index.css">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <script>
-$(document).ready(function() {
-    $('#uriHtml5Form').formValidation();
-});
-</script>
 </head>
 
 <body>
-	<div id="wrapper">
-		<div>
-		{{> navbar}}
-		</div>
-		<hr>
-		<div>
-		{{> listItem}}
-		</div>
+  <div id="wrapper">
+    <div>
+    {{> navbar}}
+    </div>
+    <hr>
+    <div>
+    {{> listItem}}
+    </div>
 
-		<div>
-			{{> addItem}}
-		</div>
-		
+    <div>
+      {{> addItem}}
+    </div>
+    
 
-	</div>
+  </div>
 </body>
 
 
 
 <template name="navbar">
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-		    <div class="container">
-		    <a href="Localhost:3000" class="pull-left"><img src="logo.png"></a>
-		        <div class="row col-md-3 pull-right clearfix">
-		            <div class="btn btn-default btn-lg  active">
-		            {{> loginButtons}}
-		            </div> 
-		        </div>  
-		    </div>
-		</nav>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+        <a href="Localhost:3000" class="pull-left"><img src="logo.png"></a>
+            <div class="row col-md-3 pull-right clearfix">
+                <div class="btn btn-default btn-lg  active">
+                {{> loginButtons}}
+                </div> 
+            </div>  
+        </div>
+    </nav>
 </template>
 
 
 
 <template name="addItem">
-  <form class="form-horizontal" role="form" id="addItem">
+  <form class="form-horizontal" role="form" id="addItem" data-parsley-validate>
 
-	<div class="form-group form-group-sm">
-      <label class="col-sm-2 control-label" for="sm">Time</label>
+    <div class="form-group form-group-sm">
+      <label class="col-sm-2 control-label"
+             for="sm">Time</label>
       <div class="col-sm-3">
         <input class="form-control" 
-        type="text" id="datetimepicker" 
-        placeholder="Enter the time">
+               type="text"
+               id="datetimepicker" 
+               placeholder="Enter the time"
+               data-required='true'/>
       </div>
     </div>    
 
     <div class="form-group form-group-sm">
-      <label class="col-sm-2 control-label" for="sm">Listing URL</label>
+      <label class="col-sm-2 control-label" 
+             for="sm">Listing URL</label>
       <div class="col-sm-3">
-        <!-- <input class="form-control" type="url" data-error="that's an invalid URL" id="sm"> -->	
-  <input class="form-control" name="website"
-                type="url"
-                data-fv-uri-message="The website address is not valid" placeholder='Enter the listing URL' />
+        <input  type="url" 
+                class="form-control" 
+                id="listing_url" 
+                placeholder="Enter the listing URL"
+                data-required='true'
+                data-type='url'
+                data-trigger='change'/> 
       </div>
     </div>
 
     <div class="form-group form-group-sm">
-      <label class="col-sm-2 control-label" for="sm">Facebook URL</label>
+      <label class="col-sm-2 control-label"
+             for="sm">Facebook URL</label>
       <div class="col-sm-3">
         <input class="form-control"
-         Placeholder="enter the Facebook URL"
-         type="text" id="facebook_url">
+               Placeholder="enter the Facebook URL"
+               type="url"
+               id="facebook_url">
       </div>
     </div>
-<div class="container	">
-	<div class="panel-footer"> 
+<div class="container ">
+  <div class="panel-footer"> 
         <button class="btn btn-danger btn-md">Clear</button>
         <button class="btn btn-success btn-md pull-right submit">Submit</button>
     </div>
@@ -90,50 +93,50 @@ $(document).ready(function() {
   </form>
 
 </template>
-	
+  
 
 
 
 
 
 <template name="listItem">
-	<div class="jumbotron">
-		<div class="container">
+  <div class="jumbotron">
+    <div class="container">
             <table class="table">
                 <thead> 
                     <tr>
-                    	<th>Created At</th>
-                    	<th>Time</th>
+                      <th>Created At</th>
+                      <th>Time</th>
                         <th>Username</th>
                         <th>Listing URL</th>
                         <th>Facebook URL</th>
                         <th>
                         <div class="dropdown">
-							    <button class="btn btn-info dropdown-toggle" id="menu1" data-toggle="dropdown">Sort
-							    <span class="caret"></span></button>
-							    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-							      <li><a class="sort_by_time">Time</a></li>
-							      <li><a class="sort_by_listing">listing</a></li>
-								</ul>
-							</div>
+                  <button class="btn btn-info dropdown-toggle" id="menu1" data-toggle="dropdown">Sort
+                  <span class="caret"></span></button>
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                    <li><a class="sort_by_time">Time</a></li>
+                    <li><a class="sort_by_listing">listing</a></li>
+                </ul>
+              </div>
                         </th>       
                     </tr>
                 </thead>
                 <tbody>
-	                {{#each entry}}
-	                    <tr>
-						    <td>{{created_at}}</td>
-						    <td>{{time}}</td>
-						    <td>{{username}}</td>
-						    <td>{{listing_url}}</td>   
-						    <td>{{facebook_url}}</td>
-						    <td><button class="btn btn-danger delete">Delete</button></td>
-						</tr>
-	                {{/each}}
-		        </tbody>
+                  {{#each entry}}
+                      <tr>
+                <td>{{created_at}}</td>
+                <td>{{time}}</td>
+                <td>{{username}}</td>
+                <td>{{listing_url}}</td>   
+                <td>{{facebook_url}}</td>
+                <td><button class="btn btn-danger delete">Delete</button></td>
+            </tr>
+                  {{/each}}
+            </tbody>
             </table>    
-		</div>	
-	</div>
+    </div>  
+  </div>
 </template>
 
 

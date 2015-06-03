@@ -13,3 +13,4 @@ accounts-ui
 momentjs:moment
 dburles:session-unset
 ryanswapp:datetime-picker
+amr:parsley.js
